@@ -3,7 +3,7 @@ const Genre = require("../models/Genre");
 
 const getAll = catchError(async (req, res) => {
   const results = await Genre.findAll();
-  return res.json(results);
+  return res.status(200).json(results);
 });
 
 const create = catchError(async (req, res) => {

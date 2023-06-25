@@ -1,13 +1,12 @@
 const catchError = require("../utils/catchError");
 const Movie = require("../models/Movie");
-
 const Genre = require("../models/Genre");
 const Actor = require("../models/Actor");
 const Director = require("../models/Director");
 
 const getAll = catchError(async (req, res) => {
   const results = await Movie.findAll({ include: [Genre, Actor, Director] });
-  return res.json(results);
+  return res.status(200).json(results);
 });
 
 const create = catchError(async (req, res) => {
@@ -48,7 +47,7 @@ const setGenres = catchError(async (req, res) => {
   //se trae los generos
   const genres = await movie.getGenres();
 
-  return res.json(genres);
+  return res.status(201).json(genres);
 });
 
 // /movies/:id/actors
@@ -58,8 +57,8 @@ const setActors = catchError(async (req, res) => {
 
   await movie.setActors(req.body);
 
-  const actors = await movie.getActors;
-  return res.json(actors);
+  const actors = await movie.getActors();
+  return res.status(201).json(actors);
 });
 
 // /movies/:id/actors
@@ -69,8 +68,8 @@ const setDirectors = catchError(async (req, res) => {
 
   await movie.setDirectors(req.body);
 
-  const directors = await movie.getDirectors;
-  return res.json(directors);
+  const directors = await movie.getDirectors();
+  return res.status(201).json(directors);
 });
 module.exports = {
   getAll,

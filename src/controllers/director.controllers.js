@@ -3,7 +3,7 @@ const Director = require("../models/Director");
 
 const getAll = catchError(async (req, res) => {
   const results = await Director.findAll();
-  return res.json(results);
+  return res.status(200).json(results);
 });
 
 const create = catchError(async (req, res) => {
